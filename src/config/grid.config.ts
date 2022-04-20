@@ -11,3 +11,14 @@ export const DEFAULT_COORDINATES: ICoordinate[] = [
   {line: 4, column: 4},
   {line: 5, column: 4}
 ];
+
+export const AROUND_CELLS = [
+  {x: 0, y: 1},
+  {x: 0, y: -1},
+  {x: 1, y: 0},
+  {x: 1, y: 1},
+  {x: 1, y: -1},
+  {x: -1, y: 0},
+  {x: -1, y: 1},
+  {x: -1, y: -1}
+];

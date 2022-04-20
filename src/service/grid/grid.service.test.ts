@@ -1,4 +1,4 @@
-import {generateGrid} from "./grid.service";
+import {generateGrid, nextGrid} from "./grid.service";
 
 test('generateDefaultGrid:  default params', () => {
   const grid = generateGrid();
@@ -33,4 +33,24 @@ test('generateDefaultGrid: Good default schemas', () => {
   ];
 
   expect(grid).toEqual(expectedGrid);
+});
+
+test('nextGrid', () => {
+  const grid = generateGrid();
+  const newGrid = nextGrid(grid);
+
+  const expectedGrid = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
+
+  expect(newGrid).toEqual(expectedGrid);
 });
