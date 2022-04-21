@@ -1,6 +1,5 @@
 import {
   AROUND_CELLS,
-  DEFAULT_COORDINATES,
   GRID_CELL_DOWN_VALUE,
   GRID_CELL_UP_VALUE,
   MINIMAL_COLUMNS,
@@ -8,11 +7,6 @@ import {
 } from "../../config/grid.config";
 
 export const generateGrid = (nbRows: number = MINIMAL_ROWS, nbColumns: number = MINIMAL_COLUMNS): number[][] => {
-  const emptyGrid = generateEmptyGrid(nbRows, nbColumns);
-  return insertDefaultValues(emptyGrid);
-}
-
-const generateEmptyGrid = (nbRows: number = MINIMAL_ROWS, nbColumns: number = MINIMAL_COLUMNS): number[][] => {
   if(nbRows < MINIMAL_ROWS) {
     throw new RangeError(`nbRows should be up greater or equal tha ${MINIMAL_ROWS}`);
   }
@@ -23,25 +17,21 @@ const generateEmptyGrid = (nbRows: number = MINIMAL_ROWS, nbColumns: number = MI
 
   const grid = [];
   for (let i = 0; i < nbRows; i++) {
-    grid.push(Array.from(Array(nbColumns), () => GRID_CELL_DOWN_VALUE));
+    grid.push(generateLine());
   }
 
   return grid;
 }
 
-const insertDefaultValues = (grid: number[][]): number[][] => {
-  for (let i = 0; i < DEFAULT_COORDINATES.length; i++) {
-    grid[DEFAULT_COORDINATES[i].line][DEFAULT_COORDINATES[i].column] = GRID_CELL_UP_VALUE
-  }
-
-  return grid;
+const generateLine = (nbColumns: number = MINIMAL_COLUMNS): number[] => {
+  return Array.from(Array(nbColumns), () => generateCellValue());
 }
 
 export const nextGrid = (grid: number[][]): number[][] => {
   let newGrid = duplicateGrid(grid);
 
   for (let line = 0; line < grid.length; line++) {
-    for (let column = 0; column < grid.length; column++) {
+    for (let column = 0; column < grid[line].length; column++) {
       newGrid = updateCell(grid, newGrid, line, column);
     }
   }
@@ -104,3 +94,7 @@ const isCellUnderpopulated = (nbNbOfNeighbours: number): boolean => nbNbOfNeighb
 const isCellOvercrowded = (nbNbOfNeighbours: number): boolean => nbNbOfNeighbours > 3;
 
 const isGoodForReproduction = (nbNbOfNeighbours: number): boolean => nbNbOfNeighbours === 3;
+
+const generateCellValue = (random: number = Math.random()): number => {
+  return random > 0.7 ? GRID_CELL_UP_VALUE : GRID_CELL_DOWN_VALUE
+}
