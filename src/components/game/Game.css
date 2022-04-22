@@ -1,0 +1,40 @@
+.wrapper-contols{
+    margin: 50px 0px;
+    font-size: 18px;
+    color: aliceblue;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper-contols-interval{
+    font-size: 16px;
+    background-color: blueviolet;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0px 10px;
+}
+
+button{
+    padding: 10px 20px;
+    background-color: blueviolet;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: aliceblue;
+    cursor: pointer;
+}
+
+span{
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px 2px;
+}
+
+input{
+    width: 100px;
+}
