@@ -30,6 +30,7 @@ const Game = (): React.ReactComponentElement<any> => {
 
       <Controls
         isLive={live}
+        currentInterval={time}
         onChangeLiveStatus={toggleLive}
         onChangeInterval={(interval) => setTime(interval)}
       />

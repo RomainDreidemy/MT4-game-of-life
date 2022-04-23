@@ -6,16 +6,20 @@ interface IControlsProps {
   isLive: boolean
   onChangeLiveStatus: () => void
   onChangeInterval: (interval: number) => void
+  currentInterval: number
 }
 
-const Controls = ({ isLive, onChangeInterval, onChangeLiveStatus }: IControlsProps) => (
+const Controls = ({ isLive, currentInterval, onChangeInterval, onChangeLiveStatus }: IControlsProps) => (
   <div className='wrapper-controls'>
     <Button
       text={isLive ? "Stop" : "Start"}
       onClick={onChangeLiveStatus}
     />
 
-    <Interval onChange={(interval) => onChangeInterval(interval)} />
+    <Interval
+      currentInterval={currentInterval}
+      onChange={(interval) => onChangeInterval(interval)}
+    />
   </div>
 );
 
