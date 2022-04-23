@@ -1,5 +1,5 @@
-.wrapper-contols{
-    margin: 50px 0px;
+.wrapper-controls{
+    margin: 50px 0;
     font-size: 18px;
     color: aliceblue;
     font-weight: bold;
@@ -10,12 +10,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.wrapper-contols-interval{
+.wrapper-controls-interval{
     font-size: 16px;
     background-color: blueviolet;
     padding: 10px 20px;
     border-radius: 5px;
-    margin: 0px 10px;
+    margin: 0 10px;
 }
 
 button{
@@ -32,7 +32,7 @@ button{
 span{
     display: inline-block;
     font-size: 12px;
-    margin: 0px 2px;
+    margin: 0 2px;
 }
 
 input{

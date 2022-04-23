@@ -1,23 +1,22 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {generateGrid, nextGrid} from "../../services/grid/grid.service";
 import {useInterval} from "../../hooks/useInterval.hook";
 import {GRID_CELL_UP_VALUE, INTERVAL_UPDATE_CELL} from "../../config/grid.config";
 import "./Game.css";
+import Controls from "./Controls/Controls";
 
 const Game = (): React.ReactComponentElement<any> => {
   const [grid, setGrid] = useState<number[][]>(generateGrid());
-  const [time, setTime] = useState(INTERVAL_UPDATE_CELL);
-  const [live, setLive] = useState(false);
-  
-  const handleChange = (event: any) => {
-    setTime(event.target.value)
-  }
+  const [time, setTime] = useState<number>(INTERVAL_UPDATE_CELL);
+  const [live, setLive] = useState<boolean>(false);
 
   useInterval(() => {
-    if(live != false){
+    if(live){
       setGrid([...nextGrid(grid)]);
     }
   }, time);
+
+  const toggleLive = () => setLive(!live)
 
   return (
     <div>
@@ -28,15 +27,12 @@ const Game = (): React.ReactComponentElement<any> => {
           </div>
         ))}
       </div>
-      <div className='wrapper-contols'>
-        <button onClick={() => {setLive(!live)}}>
-            {live ? "Stop" : "Start"}
-        </button>
-        <div className='wrapper-contols-interval'>
-          <label>Speed Interval<span>(millisecond)</span>: </label>
-          <input type="number" min="0" step="1000" onChange={handleChange} />
-        </div>
-      </div>
+
+      <Controls
+        isLive={live}
+        onChangeLiveStatus={toggleLive}
+        onChangeInterval={(interval) => setTime(interval)}
+      />
     </div>
   );
 };
