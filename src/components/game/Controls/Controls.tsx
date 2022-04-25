@@ -4,17 +4,24 @@ import Interval from "./Interval/Interval";
 
 interface IControlsProps {
   isLive: boolean
+	currentInterval: number
   onChangeLiveStatus: () => void
   onChangeInterval: (interval: number) => void
-  currentInterval: number
+	onNext: () => void
 }
 
-const Controls = ({ isLive, currentInterval, onChangeInterval, onChangeLiveStatus }: IControlsProps) => (
+const Controls = ({ isLive, currentInterval, onChangeInterval, onChangeLiveStatus, onNext }: IControlsProps) => (
   <div className='wrapper-controls'>
-    <Button
-      text={isLive ? "Stop" : "Start"}
-      onClick={onChangeLiveStatus}
-    />
+      <Button
+          text={isLive ? "Stop" : "Start"}
+          onClick={onChangeLiveStatus}
+      />
+
+      <Button
+          text="Next"
+					isDisabled={isLive}
+          onClick={onNext}
+      />
 
     <Interval
       currentInterval={currentInterval}

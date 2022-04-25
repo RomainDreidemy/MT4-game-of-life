@@ -13,11 +13,15 @@ const Game = () => {
 
   useInterval(() => {
     if(live){
-      setGrid([...nextGrid(grid)]);
+      onNext();
     }
   }, time);
 
   const toggleLive = () => setLive(!live)
+
+  const onNext = () => {
+    setGrid([...nextGrid(grid)]);
+  }
 
   return (
     <>
@@ -28,6 +32,7 @@ const Game = () => {
         currentInterval={time}
         onChangeLiveStatus={toggleLive}
         onChangeInterval={(interval) => setTime(interval)}
+        onNext={onNext}
       />
     </>
   );
