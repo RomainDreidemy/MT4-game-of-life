@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {generateGrid, nextGrid} from "../../services/grid/grid.service";
 import {useInterval} from "../../hooks/useInterval.hook";
 import {INTERVAL_UPDATE_CELL} from "../../config/grid.config";
@@ -10,6 +10,9 @@ const Game = () => {
   const [grid, setGrid] = useState<number[][]>(generateGrid());
   const [time, setTime] = useState<number>(INTERVAL_UPDATE_CELL);
   const [live, setLive] = useState<boolean>(false);
+  const [historyLaps, setHistoryLaps] = useState<number[][][]>([]);
+
+  useEffect(() => setHistoryLaps([...historyLaps.slice(-9), grid]), [grid]);
 
   useInterval(() => {
     if(live){
@@ -23,6 +26,10 @@ const Game = () => {
     setGrid([...nextGrid(grid)]);
   }
 
+  const selectLap = (lap: number[][]) => {
+    setGrid([...lap]);
+  }
+
   return (
     <>
       <Grid lines={grid} />
@@ -34,6 +41,12 @@ const Game = () => {
         onChangeInterval={(interval) => setTime(interval)}
         onNext={onNext}
       />
+
+      <div>
+        {historyLaps.map((lap, index) => (
+          <div onClick={() => selectLap(lap)}>Return to lap {index}</div>
+        )) }
+      </div>
     </>
   );
 };
