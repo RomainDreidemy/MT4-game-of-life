@@ -9,6 +9,6 @@ test('generateLine: true', () => {
 
 test('generateLine: false', () => {
   const generatedLineFalse = generateLine(5, () => 0);
-  
+
   expect(generatedLineFalse).toStrictEqual([0, 0, 0, 0, 0]);
 });
