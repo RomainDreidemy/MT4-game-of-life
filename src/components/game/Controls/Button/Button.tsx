@@ -1,10 +1,5 @@
 import React from 'react';
-
-interface IButtonProps {
-  text: string
-  onClick: () => void
-  isDisabled?: boolean
-}
+import {IButtonProps} from "../../../../interfaces/button.interface";
 
 const Button = ( { text, onClick, isDisabled = false }: IButtonProps) => (
   <button onClick={onClick} disabled={isDisabled}>

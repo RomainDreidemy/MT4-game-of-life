@@ -1,11 +1,8 @@
 import React from 'react';
+import {IIntervalProps} from "../../../../interfaces/interval.interface";
 
-interface IIntervalProps {
-  currentInterval: number
-  onChange: (interval: number) => void
-}
 
-const Interval = ({ currentInterval, onChange }: IIntervalProps) => (
+const Interval = ({currentInterval, onChange}: IIntervalProps) => (
   <div className='wrapper-controls-interval'>
     <label>Speed Interval<span>(millisecond)</span>: </label>
     <input
