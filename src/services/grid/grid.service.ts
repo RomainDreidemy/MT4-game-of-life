@@ -7,8 +7,8 @@ import {
 } from "../../config/grid.config";
 import {CellType} from "../../types/cell.type";
 import {GripType} from "../../types/grip.type";
-import {generateCellValue, updateCell} from "../cell/cell.service";
-import {generateLine} from "../line/line.service";
+import {generateCellValue, updateCell} from "./line/cell/cell.service";
+import {generateLine} from "./line/line.service";
 
 export const generateGrid = (nbRows: number = MINIMAL_ROWS, nbColumns: number = MINIMAL_COLUMNS, generatorLine: () => CellType[] = () => generateLine()): GripType => {
   if (nbRows < MINIMAL_ROWS) {

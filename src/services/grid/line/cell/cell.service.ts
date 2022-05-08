@@ -4,9 +4,9 @@ import {
   GRID_CELL_UP_VALUE,
   MINIMAL_COLUMNS,
   MINIMAL_ROWS
-} from "../../config/grid.config";
-import {CellType} from "../../types/cell.type";
-import {GripType} from "../../types/grip.type";
+} from "../../../../config/grid.config";
+import {CellType} from "../../../../types/cell.type";
+import {GripType} from "../../../../types/grip.type";
 
 const getNbOfNeighbours = (grid: number[][], line: number, column: number): number => {
   let count = 0;
