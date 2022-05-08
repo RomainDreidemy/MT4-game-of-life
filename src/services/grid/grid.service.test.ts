@@ -1,4 +1,4 @@
-import {generateGrid, isCellUp, nextGrid} from "./grid.service";
+import {generateGrid, nextGrid} from "./grid.service";
 
 
 test('generateDefaultGrid: throw "nbRows"', async () => {
@@ -35,14 +35,6 @@ test('generateDefaultGrid: modify params', () => {
   const expected = 100;
 
   expect(grid.length).toBe(expected);
-});
-
-test('isCellUp: default', () => {
-  const cellUpTrue = isCellUp(1);
-  const cellUpFalse = isCellUp(0);
-
-  expect(cellUpTrue).toBe(true);
-  expect(cellUpFalse).toBe(false);
 });
 
 // test('generateDefaultGrid: Good default schemas', () => {
