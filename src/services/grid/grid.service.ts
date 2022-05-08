@@ -39,7 +39,7 @@ export const nextGrid = (grid: GripType): GripType => {
   return newGrid;
 }
 
-const duplicateGrid = (grid: GripType): GripType => {
+export const duplicateGrid = (grid: GripType): GripType => {
   return grid.map(function (arr) {
     return arr.slice();
   })

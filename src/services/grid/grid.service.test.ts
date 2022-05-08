@@ -1,4 +1,5 @@
-import {generateGrid, nextGrid} from "./grid.service";
+import {duplicateGrid, generateGrid, nextGrid} from "./grid.service";
+import {GripType} from "../../types/grip.type";
 
 
 test('generateDefaultGrid: throw "nbRows"', async () => {
@@ -37,48 +38,57 @@ test('generateDefaultGrid: modify params', () => {
   expect(grid.length).toBe(expected);
 });
 
-// test('generateDefaultGrid: Good default schemas', () => {
-//   const grid = generateGrid(50, 70, [0]);
-//
-//   console.log(JSON.stringify(grid))
-//   console.log(
-//     '==================='
-//   )
-//
-//
-//
-//   const expectedGrid = [
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-//   ];
-//
-//   expect(grid).toEqual(expectedGrid);
-// });
+test('generateDefaultGrid: Default schemas', () => {
+  const grid = generateGrid(50, 70, () => [0]);
 
-// test('nextGrid', () => {
-//   const grid = generateGrid();
-//   const newGrid = nextGrid(grid);
-//
-//   const expectedGrid = [
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-//   ];
-//
-//   expect(newGrid).toEqual(expectedGrid);
-// });
+  const expectedGrid = [
+    [0], [0], [0], [0], [0], [0],
+    [0], [0], [0], [0], [0], [0],
+    [0], [0], [0], [0], [0], [0],
+    [0], [0], [0], [0], [0], [0],
+    [0], [0], [0], [0], [0], [0],
+    [0], [0], [0], [0], [0], [0],
+    [0], [0], [0], [0], [0], [0],
+    [0], [0], [0], [0], [0], [0],
+    [0], [0]
+  ];
+
+  expect(grid).toEqual(expectedGrid);
+});
+
+test('nextGrid: Default schemas', () => {
+  const grid = generateGrid(50, 70, () => [1]);
+  const newGrid = nextGrid(grid);
+
+  const expectedGrid = [
+    [0], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [0]
+  ];
+
+  expect(newGrid).toEqual(expectedGrid);
+});
+
+test('nextGrid: Default schemas', () => {
+  const gridInitial: GripType = [
+    [0], [0], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [1], [1], [1], [1], [1],
+    [1], [0]
+  ];
+
+  const duplicatedGrid = duplicateGrid(gridInitial);
+
+  expect(duplicatedGrid).toEqual(duplicatedGrid);
+});
