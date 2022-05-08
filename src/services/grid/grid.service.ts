@@ -5,29 +5,31 @@ import {
   MINIMAL_COLUMNS,
   MINIMAL_ROWS
 } from "../../config/grid.config";
+import {CellType} from "../../types/cell.type";
+import {GripType} from "../../types/grip.type";
 
-export const generateGrid = (nbRows: number = MINIMAL_ROWS, nbColumns: number = MINIMAL_COLUMNS): number[][] => {
-  if(nbRows < MINIMAL_ROWS) {
-    throw new RangeError(`nbRows should be up greater or equal tha ${MINIMAL_ROWS}`);
+export const generateGrid = (nbRows: number = MINIMAL_ROWS, nbColumns: number = MINIMAL_COLUMNS, generatorLine: () => CellType[] = () => generateLine()): GripType => {
+  if (nbRows < MINIMAL_ROWS) {
+    throw new RangeError(`nbRows should be up greater or equal than ${MINIMAL_ROWS}`);
   }
 
-  if(nbColumns < MINIMAL_COLUMNS) {
-    throw new RangeError(`nbColumns should be up greater or equal tha ${MINIMAL_COLUMNS}`);
+  if (nbColumns < MINIMAL_COLUMNS) {
+    throw new RangeError(`nbColumns should be up greater or equal than ${MINIMAL_COLUMNS}`);
   }
 
-  const grid = [];
+  const grid: CellType[][] = [];
   for (let i = 0; i < nbRows; i++) {
-    grid.push(generateLine());
+    grid.push(generatorLine());
   }
 
   return grid;
 }
 
-const generateLine = (nbColumns: number = MINIMAL_COLUMNS): number[] => {
-  return Array.from(Array(nbColumns), () => generateCellValue());
+export const generateLine = (nbColumns: number = MINIMAL_COLUMNS, generatorCell: () => CellType = () => generateCellValue()): CellType[] => {
+  return Array.from(Array(nbColumns), () => generatorCell());
 }
 
-export const nextGrid = (grid: number[][]): number[][] => {
+export const nextGrid = (grid: GripType): GripType => {
   let newGrid = duplicateGrid(grid);
 
   for (let line = 0; line < grid.length; line++) {
@@ -59,13 +61,13 @@ const getNbOfNeighbours = (grid: number[][], line: number, column: number): numb
   return count;
 }
 
-const duplicateGrid = (grid: number[][]): number[][] => {
-  return grid.map(function(arr) {
+const duplicateGrid = (grid: GripType): GripType => {
+  return grid.map(function (arr) {
     return arr.slice();
   })
 }
 
-const updateCell = (grid: number[][], newGrid: number[][], line: number, column: number): number[][] => {
+const updateCell = (grid: GripType, newGrid: GripType, line: number, column: number): GripType => {
   const nbNbOfNeighbours = getNbOfNeighbours(grid, line, column);
 
   let value = GRID_CELL_DOWN_VALUE;
@@ -87,14 +89,14 @@ const updateCell = (grid: number[][], newGrid: number[][], line: number, column:
   return newGrid;
 }
 
-const isCellUp = (cell: number): boolean => cell === GRID_CELL_UP_VALUE;
+export const isCellUp = (cell: CellType): boolean => cell === GRID_CELL_UP_VALUE;
 
-const isCellUnderpopulated = (nbNbOfNeighbours: number): boolean => nbNbOfNeighbours < 2;
+export const isCellUnderpopulated = (nbNbOfNeighbours: number): boolean => nbNbOfNeighbours < 2;
 
-const isCellOvercrowded = (nbNbOfNeighbours: number): boolean => nbNbOfNeighbours > 3;
+export const isCellOvercrowded = (nbNbOfNeighbours: number): boolean => nbNbOfNeighbours > 3;
 
-const isGoodForReproduction = (nbNbOfNeighbours: number): boolean => nbNbOfNeighbours === 3;
+export const isGoodForReproduction = (nbNbOfNeighbours: number): boolean => nbNbOfNeighbours === 3;
 
-const generateCellValue = (random: number = Math.random()): number => {
+export const generateCellValue = (random: number = Math.random()): CellType => {
   return random > 0.7 ? GRID_CELL_UP_VALUE : GRID_CELL_DOWN_VALUE
 }
