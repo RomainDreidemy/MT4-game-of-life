@@ -1,9 +1,6 @@
 import React from 'react';
 import Line from "./Line/Line";
-
-interface  IGridProps {
-	lines: number[][]
-}
+import {IGridProps} from "../../../interfaces/grid.interface";
 
 const Grid = ({ lines }: IGridProps) => (
 	<div className="grid">
