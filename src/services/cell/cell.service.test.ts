@@ -14,9 +14,8 @@ test('isCellUp: default', () => {
   expect(cellUpFalse).toBe(false);
 });
 
-
 test('isCellUnderpopulated: true', () => {
-  const cellUnderpopulated = isCellUnderpopulated(2);
+  const cellUnderpopulated = isCellUnderpopulated(1);
 
   expect(cellUnderpopulated).toBe(true);
 });
