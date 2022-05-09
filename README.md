@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Game of life
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Group
+- Jean Tostivint
+- Romain Dreidemy
+- Victor Balducci
+- Fiona Roux
 
 ## Available Scripts
 
