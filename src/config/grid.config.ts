@@ -1,10 +1,11 @@
 import {ICoordinate} from "../interfaces/grid.interface";
+import {CellType} from "../types/cell.type";
 
 export const MINIMAL_ROWS: number = 50;
 export const MINIMAL_COLUMNS: number = 70;
 
-export const GRID_CELL_UP_VALUE: number = 1;
-export const GRID_CELL_DOWN_VALUE: number = 0;
+export const GRID_CELL_UP_VALUE: CellType = 1;
+export const GRID_CELL_DOWN_VALUE: CellType = 0;
 
 export const INTERVAL_UPDATE_CELL = 100;
 

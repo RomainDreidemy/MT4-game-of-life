@@ -1,9 +1,6 @@
 import React from 'react';
 import Cell from "./Cell/Cell";
-
-interface ILineProps {
-	line: number[]
-}
+import {ILineProps} from "../../../../interfaces/line.interface";
 
 const Line = ({ line }: ILineProps) => (
 	<div className="line">

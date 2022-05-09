@@ -5,17 +5,20 @@ import {INTERVAL_UPDATE_CELL} from "../../config/grid.config";
 import "./Game.css";
 import Controls from "./Controls/Controls";
 import Grid from "./Grid/Grid";
+import {GripType} from "../../types/grip.type";
 
 const Game = () => {
-  const [grid, setGrid] = useState<number[][]>(generateGrid());
+  const [grid, setGrid] = useState<GripType>(generateGrid());
   const [time, setTime] = useState<number>(INTERVAL_UPDATE_CELL);
   const [live, setLive] = useState<boolean>(false);
 
-  useInterval(() => {
+  const nextStep = () => {
     if(live){
       onNext();
     }
-  }, time);
+  }
+
+  useInterval(nextStep, time);
 
   const toggleLive = () => setLive(!live)
 
